@@ -21,15 +21,22 @@ const App = () => {
   }, []);
 
   const addTask = () => {
-    // Crea una nueva tarea con la etiqueta proporcionada
     const newTask = { label: write, done: false };
-
-    // Fusiona la nueva tarea con las tareas existentes
     const updatedTasks = [...task, newTask];
 
+    updateTasks(updatedTasks);
+  };
+
+  const deleteTask = (index) => {
+    const updatedTasks = [...task];
+    updatedTasks.splice(index, 1);
+    updateTasks(updatedTasks);
+  };
+
+  const updateTasks = (updatedTasks) => {
     fetch('https://playground.4geeks.com/apis/fake/todos/user/roddsolis', {
       method: 'PUT',
-      body: JSON.stringify(updatedTasks),
+      body: JSON.stringify(updatedTasks.length === 0 ? [] : updatedTasks),
       headers: { 'Content-Type': 'application/json' },
     })
       .then((response) => response.json())
@@ -42,31 +49,30 @@ const App = () => {
   };
 
   return (
-    <div>
+    <>
       <h1>Lista de tareas</h1>
       <div className="todoListWrapper">
         <form onSubmit={(e) => e.preventDefault()}>
           <input
             type="text"
-            placeholder="Escribe una tarea aquí y presiona ENTER para crear"
+            placeholder="Escribe una tarea aquí y presiona Agregar"
             onChange={(e) => setWrite(e.target.value)}
             value={write}
-            style={{ width: '20%' }}
           />
-          <button onClick={() => addTask()}>add</button>
+          <button onClick={() => addTask()}>Agregar</button>
         </form>
         <ul>
           {task?.map((item, index) => {
             return (
               <li key={index} style={{ display: 'flex', alignItems: 'center', gap: '1em' }}>
                 <p>{item.label}</p>
-                <button>x</button>
+                <button onClick={() => deleteTask(index)}>x</button>
               </li>
             );
           })}
         </ul>
       </div>
-    </div>
+    </>
   );
 };
 
