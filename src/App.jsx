@@ -4,6 +4,20 @@ const App = () => {
   const [task, setTask] = useState([]);
   const [write, setWrite] = useState('');
 
+
+  useEffect(() => {
+    fetch('https://playground.4geeks.com/apis/fake/todos/user/roddsolis',
+    {
+      method:'PUSH',
+      body:JSON.stringify([]),
+      headers:{'Content_Type': 'application/json'},
+    })
+      .then((response) => {return response.json();})
+      .then((data) => console.log(data))
+      .catch((error) => console.log(error));
+       },[]);
+
+
   useEffect(() => {
     fetch('https://playground.4geeks.com/apis/fake/todos/user/roddsolis')
       .then((response) => {

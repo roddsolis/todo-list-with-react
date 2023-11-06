@@ -61,11 +61,24 @@ input{
     border: none;
     height: 40px;
     width: 100%;
+    font-size: 1rem;
+}
+
+input:active{
+    border: none;
+    outline: none;
+    
+}
+input:focus{
+    border: none;
+    outline: none;
 }
 
 ::placeholder{
     color: rgb(182, 182, 182);
 }
+
+
 
 button{
     height: 40px;
