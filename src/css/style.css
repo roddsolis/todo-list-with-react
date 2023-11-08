@@ -11,7 +11,7 @@
 }
 
 body{
-    background-color: hsl(207, 100%, 98%);
+    background-color: hsl(195, 17%, 95%);
     height: 100vh;
 }
 
@@ -37,13 +37,13 @@ h1{
     grid-row: 3 / 6;
     grid-column: 5 / 8;
     background-color: white;
-    padding: 2em;
-    border-radius: 0.5em;
+    padding: 3em;
+    border-radius: 1em;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 1em;
-    border: 1px solid hsl(0, 0%, 93%);
+    box-shadow: 0px 10px 20px -12px hsla(0, 0%, 11%, 0.233);
 }
 
 form{
@@ -53,6 +53,8 @@ form{
     justify-content: space-between;
     gap: 0.5em;
     width: 100%;
+    border-bottom: 1px solid rgb(238, 238, 238);
+    padding-bottom: 1em;
     
 }
 
@@ -61,7 +63,10 @@ input{
     border: none;
     height: 40px;
     width: 100%;
-    font-size: 1rem;
+    font-size: 0.9rem;
+    letter-spacing: 0.02em;
+    font-family: 'Figtree', sans-serif;
+
 }
 
 input:active{
@@ -80,21 +85,39 @@ input:focus{
 
 
 
-button{
+
+
+.addButton{
+    
     height: 40px;
     width: auto;
     border: none;
     background: none;
     font-size: 1em;
     font-weight: 700;
-    color: hsl(0, 0%, 24%);
+    color: hsl(256, 92%, 40%);
+    
 }
+
+.deleteButton{
+
+    height: 48px;
+    width: 48px;
+    width: auto;
+    border: none;
+    background: none;
+    font-weight: 700;
+    color: hsl(0, 0%, 75%);
+
+}
+
 
 ul{
 
     /* background-color: blue; */
     height: 40px;
     width: 100%;
+   
 
     & li{
         /* background-color: brown; */
@@ -102,8 +125,9 @@ ul{
         align-items: center;
         justify-content: space-between;
         font-weight: 500;
-        color: hsl(0, 0%, 24%);
+        color: hsl(0, 0%, 23%);
         /* padding: 1em; */
     }
 
 }
+

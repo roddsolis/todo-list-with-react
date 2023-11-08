@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { FiX } from "react-icons/fi";
 
 const App = () => {
   const [task, setTask] = useState([]);
@@ -9,8 +10,8 @@ const App = () => {
     fetch('https://playground.4geeks.com/apis/fake/todos/user/roddsolis',
     {
       method:'PUSH',
-      body:JSON.stringify([]),
       headers:{'Content_Type': 'application/json'},
+      body:JSON.stringify([]),
     })
       .then((response) => {return response.json();})
       .then((data) => console.log(data))
@@ -73,14 +74,14 @@ const App = () => {
             onChange={(e) => setWrite(e.target.value)}
             value={write}
           />
-          <button onClick={() => addTask()}>Agregar</button>
+          <button onClick={() => addTask()} className='addButton'>Agregar</button>
         </form>
         <ul>
           {task?.map((item, index) => {
             return (
               <li key={index} style={{ display: 'flex', alignItems: 'center', gap: '1em' }}>
                 <p>{item.label}</p>
-                <button onClick={() => deleteTask(index)}>x</button>
+                <button onClick={() => deleteTask(index)} className='deleteButton'><FiX/></button>
               </li>
             );
           })}
