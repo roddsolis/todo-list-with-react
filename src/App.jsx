@@ -2,38 +2,41 @@ import { useEffect, useState } from 'react';
 import { FiX } from "react-icons/fi";
 
 const App = () => {
-  const [task, setTask] = useState([]);
+
+  const [task, setTask] = useState();
   const [write, setWrite] = useState('');
 
 
+  
+
+
+
   useEffect(() => {
+
     fetch('https://playground.4geeks.com/apis/fake/todos/user/roddsolis',
     {
-      method:'PUSH',
-      headers:{'Content_Type': 'application/json'},
-      body:JSON.stringify([]),
+      method:'POST',
+      headers:{'Content-Type': 'application/json'},
+      body: JSON.stringify([])
     })
-      .then((response) => {return response.json();})
-      .then((data) => console.log(data))
-      .catch((error) => console.log(error));
-       },[]);
+    .then(response => response.json())
+    .then(data => data)
+    .catch(error => error);
 
-
-  useEffect(() => {
+    
     fetch('https://playground.4geeks.com/apis/fake/todos/user/roddsolis')
-      .then((response) => {
-        if (response.status >= 200 && response.status < 300) {
-          console.log('La respuesta fue exitosa');
-        } else {
-          console.error(`Hubo un error ${response.status}`);
-        }
-        return response.json();
-      })
-      .then((data) => {
-        setTask(data);
-      })
-      .catch((error) => console.log(error));
-  }, []);
+    .then((response) => {
+      if (response.status >= 200 && response.status < 300) {
+        console.log('La respuesta fue exitosa');
+      } else {
+        console.error(`Hubo un error ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {setTask(data);})
+    .catch((error) => console.log(error));
+    
+  },[]);
 
   const addTask = () => {
     const newTask = { label: write, done: false };
@@ -49,6 +52,7 @@ const App = () => {
   };
 
   const updateTasks = (updatedTasks) => {
+
     fetch('https://playground.4geeks.com/apis/fake/todos/user/roddsolis', {
       method: 'PUT',
       body: JSON.stringify(updatedTasks.length === 0 ? [] : updatedTasks),
